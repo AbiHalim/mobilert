@@ -1,4 +1,3 @@
-from listing import Listing
 import requests
 from bs4 import BeautifulSoup
 
@@ -26,12 +25,10 @@ def olxscrape(query):
         raw_price = listing.find("span", class_="_1zgtX").get_text()
         price = int(''.join([char for char in raw_price if char.isdigit()]))
 
-        finalisting = Listing(url, seller_title, site_title, price)
+        finalisting = {"url":url, "seller_title":seller_title, "site_title":site_title, "price":price}
         print(finalisting)
 
         olxlist.append(finalisting)
 
     print(f"Finished olx scraping: {query}")
     return olxlist
-
-olxscrape("Toyota Crown")

@@ -1,4 +1,3 @@
-from listing import Listing
 import requests
 from bs4 import BeautifulSoup
 
@@ -27,12 +26,10 @@ def mobil123scrape(query):
         raw_price = line_text.split(" ")[-2]
         price = int(''.join([char for char in raw_price if char.isdigit()]))
 
-        finalisting = Listing(url, seller_title, site_title, price)
+        finalisting = {"url":url, "seller_title":seller_title, "site_title":site_title, "price":price}
         print(finalisting)
 
         mobil123list.append(finalisting)
 
     print(f"Finished mobil123 scraping: {query}")
     return mobil123list
-
-mobil123scrape("Toyota Crown")
