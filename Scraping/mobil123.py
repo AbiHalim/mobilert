@@ -5,7 +5,7 @@ headers = {"User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Apple
 
 def mobil123scrape(query):
     print(f"Starting mobil123 scraping: {query}")
-    query.replace(" ", "+")
+    query.replace(" ", "+")  # fit url format
     site = requests.get(f"https://www.mobil123.com/mobil-dijual/indonesia?keyword={query}/", headers=headers)
     doc = BeautifulSoup(site.content, 'html.parser')
 
@@ -23,6 +23,7 @@ def mobil123scrape(query):
 
         line_text = listing.get("data-default-line-text")
 
+        #  remove non digit characters from price and convert to int
         raw_price = line_text.split(" ")[-2]
         price = int(''.join([char for char in raw_price if char.isdigit()]))
 

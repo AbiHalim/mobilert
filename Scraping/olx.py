@@ -5,7 +5,7 @@ headers = {"User-Agent" : "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Apple
 
 def olxscrape(query):
     print(f"Starting olx scraping: {query}")
-    query.replace(" ", "+")
+    query.replace(" ", "+")  # fit url format
     site = requests.get(f"https://www.olx.co.id/items/q-{query}/", headers=headers)
     doc = BeautifulSoup(site.content, 'html.parser')
 
@@ -13,15 +13,18 @@ def olxscrape(query):
 
     olxlist = []
 
-    listings = doc.find_all("li", class_="_3V_Ww")
+    listings = doc.find_all("li", class_="_3V_Ww")  # get all listings on page
     for listing in listings:
+        # attach url to olx domain
         urltail = listing.find("a")["href"]
         url = f"https://www.olx.co.id+{urltail}/"
 
+        # get site and seller title
         div = listing.find("div", class_="_2Gr10")
         seller_title = div["title"]
         site_title = div.get_text()
 
+        # get price and strip non digit characters, convert to int
         raw_price = listing.find("span", class_="_1zgtX").get_text()
         price = int(''.join([char for char in raw_price if char.isdigit()]))
 
