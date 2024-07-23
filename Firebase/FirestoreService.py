@@ -1,5 +1,6 @@
 import firebase_admin
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from firebase_admin import credentials, firestore
 from google.cloud.firestore_v1 import ArrayUnion
 
@@ -12,6 +13,7 @@ db = firestore.client()
 
 # initialize flask
 app = Flask(__name__)
+CORS(app)
 
 def add_query(query):
     queries_ref = db.collection('queries')

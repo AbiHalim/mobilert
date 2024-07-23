@@ -1,20 +1,41 @@
 html, body {
     height: 100%;
     margin: 0;
+}
+
+body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgb(254,227,255);
+    background: radial-gradient(circle, rgba(254,227,255,1) 0%, rgba(148,187,233,1) 100%);
+    font-family: 'Helvetica', sans-serif;
 }
 
-input, select, textarea{
-    font-family: 'Helvetica';
+.container {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+    background-color: #f1f1f1;
+    padding: 20px;
+    box-shadow: 2px 2px 3px 1px #d9d9d9;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    padding: 12px 0;
+    font-size: 14px;
+}
+
+input, select, textarea {
     width: 100%;
     padding: 12px;
+    margin: 8px 0;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     resize: vertical;
-    margin: 8px 0;
 }
 
 input:focus {
@@ -22,16 +43,7 @@ input:focus {
     border-radius: 4px;
 }
 
-label {
-    padding: 12px 12px 12px 0;
-    margin: 10px 2;
-    font-family: 'Helvetica';
-    font-size: 14px;
-    font-weight: bold;
-}
-
 input[type=submit] {
-    font-family: 'Helvetica';
     background-color: #4e70f5;
     color: white;
     padding: 12px 20px;
@@ -39,15 +51,4 @@ input[type=submit] {
     border-radius: 4px;
     cursor: pointer;
     margin: 8px 0;
-}
-
-.container {
-    width: 100%;
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 2px 2px 3px 1px #d9d9d9;
 }

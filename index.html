@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="container">
-        <form>
+        <form id="subscribeForm">
             <div class="form-group">
                 <label for="query">What car are you interested in?</label><br>
                 <input type="text" id="query" name="query" placeholder="ex. Toyota Crown">
@@ -25,5 +25,32 @@
             </div>
         </form>
     </div>
+
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const query = document.getElementById('query').value;
+            const price = document.getElementById('price').value;
+            const email = document.getElementById('email').value;
+
+            fetch('http://localhost:1738/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, query, price })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Subscription successful!');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Subscription failed.');
+            });
+        });
+    </script>
 </body>
 </html>
